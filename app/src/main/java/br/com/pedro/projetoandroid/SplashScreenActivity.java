@@ -1,4 +1,4 @@
-package br.com.roadmaps.networkproject;
+package br.com.pedro.projetoandroid;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

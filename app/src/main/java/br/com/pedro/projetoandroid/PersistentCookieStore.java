@@ -1,4 +1,4 @@
-package br.com.roadmaps.networkproject;
+package br.com.pedro.projetoandroid;
 
 import android.content.Context;
 import android.content.SharedPreferences;

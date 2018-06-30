@@ -1,29 +1,43 @@
-package br.com.roadmaps.networkproject;
+package br.com.pedro.projetoandroid;
 
+import android.Manifest;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+//import com.google.android.gms.maps.CameraUpdateFactory;
+//import com.google.android.gms.maps.GoogleMap;
+//import com.google.android.gms.maps.OnMapReadyCallback;
+//import com.google.android.gms.maps.SupportMapFragment;
+//import com.google.android.gms.maps.model.LatLng;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+//public class DetalhesActivity extends AppCompatActivity implements OnMapReadyCallback {
 public class DetalhesActivity extends AppCompatActivity {
 
     String id;
+
+    Double Lat = 0.0;
+    Double Long = 0.0;
+
+//    private GoogleMap mMap;
+//
+//    GoogleMap mGoogleMap;
+//
+//    SupportMapFragment map;
+    int posicaoID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +54,36 @@ public class DetalhesActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
+//        try {
+//            Lat = jsonObject.getDouble("lat");
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            Long = jsonObject.getDouble("lng");
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+
+//         GoogleMap googleMap = (findViewById(R.id.mapView_detalhes);
+//        googleMap.addMarker(new MarkerOptions().position(new LatLng( Lat, Long)).title("Marker"));
+
 
         ImageView imageView_imagem = findViewById(R.id.imageView_imagem);
+        TextView textV_content = findViewById(R.id.textV_content);
+        TextView textV_criado = findViewById(R.id.textV_criado);
+
+        try {
+            textV_content.setText(jsonObject.getString("content"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            textV_criado.setText(jsonObject.getString("created_at"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         try {
             if (jsonObject.getString("uploaded_image").contains("https")) {
@@ -59,7 +101,6 @@ public class DetalhesActivity extends AppCompatActivity {
         }
 
 
-
         try {
             id = jsonObject.getString("id");
         } catch (JSONException e) {
@@ -67,7 +108,7 @@ public class DetalhesActivity extends AppCompatActivity {
         }
 
 
-        Button button= (Button) findViewById(R.id.but_deletar);
+        Button button = (Button) findViewById(R.id.but_deletar);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,15 +118,60 @@ public class DetalhesActivity extends AppCompatActivity {
             }
         });
 
+
+//        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+//        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+//                .findFragmentById(R.id.mapView_detalhes);
+//        mapFragment.getMapAsync(this);
+
+
+//        loadMap();
+
     }
 
+//    private void loadMap() {
+//        map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment));
+//        map.getMapAsync(this);
+//    }
 
 
+//    @Override
+//    public void onMapReady(GoogleMap googleMap) {
+//
+//        mGoogleMap = googleMap;
+////        CameraUpdate zoom=CameraUpdateFactory.zoomTo(15);
+//
+////        mGoogleMap = googleMap;
+//
+////        String nomeLocal=MyData.nameArray[posicaoID];
+////        Double Lat=MyData.Lat[posicaoID];
+////        Double Long=MyData.Long[posicaoID];
+//
+//        // Add a marker in Sydney and move the camera
+//        LatLng sydney = new LatLng(Lat, Long);
+////        LatLng sydney = new LatLng(-34, 151);
+////        mMap.addMarker(new MarkerOptions().position(sydney).title(nomeLocal));
+////        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+//        mMap.setMinZoomPreference(16.0f);
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            return;
+//        }
+//        mGoogleMap.setMyLocationEnabled(true);
+//        mGoogleMap.getUiSettings().setMyLocationButtonEnabled(false);
+//        mGoogleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+//        mGoogleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+//            @Override
+//            public void onMapClick(LatLng latLn) {
+//            }
+//        });
+//    }
 
-    private void comments(String id){
+
+    private void comments(String id) {
 //        progress = ProgressDialog.show(ListActivity.this, "", "Autenticando usuário.", true, true);
         Network net = new Network(DetalhesActivity.this);
-
 
 
         net.deletar(id, new Network.HttpCallback() {
@@ -124,7 +210,6 @@ public class DetalhesActivity extends AppCompatActivity {
 //                        });
 
 
-
                     }
                 });
             }
@@ -147,7 +232,8 @@ public class DetalhesActivity extends AppCompatActivity {
                                     alert.setTitle("Falha na conexão, tente novamente.");
                                 }
                             }
-                        } catch (NullPointerException e) {}
+                        } catch (NullPointerException e) {
+                        }
                         alert.setPositiveButton("OK!", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 dialog.dismiss();
@@ -162,12 +248,12 @@ public class DetalhesActivity extends AppCompatActivity {
             public void onSuccess(final String response) {
                 runOnUiThread(new Runnable() {
                     @Override
-                    public void run() {}
+                    public void run() {
+                    }
                 });
             }
         });
     }
-
 
 
 }

@@ -1,4 +1,4 @@
-package br.com.roadmaps.networkproject;
+package br.com.pedro.projetoandroid;
 
 import android.Manifest;
 import android.app.Activity;
@@ -13,19 +13,13 @@ import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.Typeface;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,8 +35,6 @@ import com.kbeanie.imagechooser.api.ImageChooserManager;
 import com.kbeanie.imagechooser.exceptions.ChooserException;
 
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -59,6 +51,9 @@ public class MainActivity extends AppCompatActivity implements ImageChooserListe
 
     ImageView imgPhoto;
     String img1Path = "";
+
+    String lat="-8.231";
+    String lng="-34.19742";
 
     private static final int INTENT_CAMERA = 19;
 
@@ -213,12 +208,14 @@ public class MainActivity extends AppCompatActivity implements ImageChooserListe
     }
 
     public void makeAComment(View view) {
-        progress = ProgressDialog.show(MainActivity.this, "", "Autenticando usuário.", true, true);
+        progress = ProgressDialog.show(MainActivity.this, "", "Enviando comentário...", true, true);
         Network net = new Network(MainActivity.this);
 
         EditText text = (EditText) findViewById(R.id.editText);
+        EditText editText_titulo = (EditText) findViewById(R.id.editText_titulo);
 
-        net.commentWithPicture(text.getText().toString(),"Sidd", path_image,new Network.HttpCallback() {
+//        net.commentWithPicture(text.getText().toString(),editText_titulo.getText().toString(),lat,lng, path_image,new Network.HttpCallback() {
+        net.commentWithPicture(text.getText().toString(),editText_titulo.getText().toString(), path_image,new Network.HttpCallback() {
             @Override
             public void onSuccess(final JSONArray response) {
                 progress.dismiss();
@@ -270,6 +267,7 @@ public class MainActivity extends AppCompatActivity implements ImageChooserListe
                         progress.dismiss();
                     }
                 });
+                finish();
             }
         });
     }

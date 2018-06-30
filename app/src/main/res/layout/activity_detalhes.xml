@@ -8,24 +8,31 @@
 
     <Button
         android:id="@+id/but_deletar"
-        android:layout_width="wrap_content"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:background="@drawable/shape_button"
         android:text="Deletar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
+    <!--<ImageView-->
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView_imagem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        app:civ_border_color="#000000"
+        app:civ_border_width="2dp"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
         android:layout_marginEnd="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher_round" />
@@ -53,5 +60,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textV_content" />
+
 
 </android.support.constraint.ConstraintLayout>

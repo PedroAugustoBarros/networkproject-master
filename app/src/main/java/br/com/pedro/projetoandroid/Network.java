@@ -1,6 +1,5 @@
-package br.com.roadmaps.networkproject;
+package br.com.pedro.projetoandroid;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 
 import com.squareup.okhttp.Call;
@@ -14,14 +13,11 @@ import com.squareup.okhttp.Response;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -128,6 +124,7 @@ public class Network {
         });
     }
 
+//    public void commentWithPicture(String comment, String autor, String path,String lat,String lng, final HttpCallback cb) {
     public void commentWithPicture(String comment, String autor, String path, final HttpCallback cb) {
         MediaType MEDIA_TYPE_PNG = MediaType.parse("image/jpg");
         MultipartBuilder multiPart = new MultipartBuilder();
@@ -136,6 +133,8 @@ public class Network {
         try {
             multiPart.addFormDataPart("comment[user]",autor);
             multiPart.addFormDataPart("comment[content]",comment);
+//            multiPart.addFormDataPart("comment[lat]",lat);
+//            multiPart.addFormDataPart("comment[lng]",lng);
             multiPart.addFormDataPart("comment[picture]", "imagem.jpg",
                     RequestBody.create(MEDIA_TYPE_PNG, new File(path)));
         } catch (NullPointerException e) {

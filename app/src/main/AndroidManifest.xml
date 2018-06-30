@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="br.com.roadmaps.networkproject">
+    package="br.com.pedro.projetoandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!--<uses-permission android:name="android.permission.ACCESS_GPS" />-->
+    <!--<uses-permission android:name="package.name.permission.MAPS_RECEIVE" />-->
+    <!--<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
+    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
+    <!--<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />-->
+
 
     <application
         android:allowBackup="true"
@@ -25,17 +32,17 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ListActivity"></activity>
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name="br.com.pedro.projetoandroid.MainActivity" />
+        <activity android:name="br.com.pedro.projetoandroid.ListActivity"></activity>
+        <activity android:name="br.com.pedro.projetoandroid.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".DetalhesActivity"></activity>
+        <activity android:name="br.com.pedro.projetoandroid.LoginActivity" />
+        <activity android:name="br.com.pedro.projetoandroid.DetalhesActivity"></activity>
     </application>
 
 </manifest>

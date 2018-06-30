@@ -1,4 +1,4 @@
-package br.com.roadmaps.networkproject;
+package br.com.pedro.projetoandroid;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -11,6 +11,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -36,7 +37,13 @@ public class ListActivity extends AppCompatActivity  {
 
         inputSearch = (EditText) findViewById(R.id.editText_Pesquisa);
 
-
+        Button button = (Button) findViewById(R.id.but_adicionar);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ListActivity.this,MainActivity.class));
+            }
+        });
 
     }
 
@@ -177,7 +184,11 @@ public class ListActivity extends AppCompatActivity  {
         });
     }
 
-    public void showActivityComments(View view) {
-        startActivity(new Intent(ListActivity.this,MainActivity.class));
-    }
+
+
+
+
+//    public void showActivityComments(View view) {
+//        startActivity(new Intent(ListActivity.this,MainActivity.class));
+//    }
 }
